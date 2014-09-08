@@ -1,0 +1,32 @@
+sudo apt-add-repository ppa:webupd8team/java
+sudo update-alternatives --config java
+			 --list java
+
+Synaptic -> oracle java 7
+
+-------------------- NUEVO A PARTIR DE AQUÍ --------------------------
+
+Synaptic -> 
+
+monodevelop
+monodevelop-nunit
+monodevelop-versioncontrol
+monodoc-browser
+monodoc-gtk2.0-manual
+monodoc-mysql-manual
+monodoc-nunit-manual
+
+INSTALANDO bitnami
+
+//Copiar archivo de (Red -> Examinar red) PCI4-00 -> AD - Público -> bitnami-lampstack-5.4.32-0-linux-x64-installer.run
+// También se puede descargar desde www.bitnami.com
+
+password para base de datos: sistemas
+
+
+¿Qué haremos el lunes?
+
+Crear una base de datos 3-4 campos.
+Lo veremos desde el bitnami.
+Haremos un pequeño programa que escribirá en la bd.
+
