@@ -21,11 +21,15 @@ namespace PHolaMySql
 			mySqlCommand.CommandText = 
 				string.Format ("SELECT * FROM categoria");
 
-			MySqlDataReader mysqlDataReader = mySqlCommand.ExecuteReader;
-			while (mysqlDataReader.Read ()) {
-				Console.WriteLine (mysqlDataReader.FieldCount);
+			MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
 
+			Console.WriteLine (mySqlDataReader.FieldCount);
+
+			for (int index=0; index < mySqlDataReader.FieldCount; index++) {
+				Console.WriteLine ("columna {0}={1}", index, mySqlDataReader.GetName (index));
 			}
+
+
 
 			mySqlConnection.Close ();
 		}
