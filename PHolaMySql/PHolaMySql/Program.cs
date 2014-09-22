@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Diagnostics;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -33,6 +34,24 @@ namespace PHolaMySql
 				object nombre = mySqlDataReader ["nombre"];
 				Console.WriteLine ("id={0} nombre={1}", id, nombre);
 			}
+
+			int opcion = Console.ReadLine ();
+
+
+
+			switch (opcion){ 
+			case "0":
+				Process process = new Process
+			case "1":
+				1 ();
+			case "2":
+				2 ();
+			case "3":
+				3 ();
+			case "4":
+				4 ();
+			}
+			
 //			while (mySqlDataReader.Read()) {
 //				for (int index=0; index < mySqlDataReader.FieldCount; index++) {
 //					Console.WriteLine (mySqlDataReader.GetValue (index));
