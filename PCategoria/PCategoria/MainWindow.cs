@@ -39,6 +39,7 @@ public partial class MainWindow: Gtk.Window
 			object nombre = mySqlDataReader["nombre"];
 			listStore.AppendValues (id, nombre);
 		}
+		mySqlConnection.Close ();
 
 
 
@@ -47,6 +48,13 @@ public partial class MainWindow: Gtk.Window
 	protected void OnAddActionActivated (object sender, EventArgs e)
 	{
 		listStore.AppendValues ("1", DateTime.Now.ToString());
+		mySqlConnection = new MySqlConnection (
+			"Server=localhost; Database=dbprueba; User ID=root; Password=sistemas");
+		mySqlConnection.Open ();
+		MySqlCommand mySqlCommandInsert = mySqlConnection.CreateCommand ();
+		mySqlCommandInsert.CommandText = String.Format("INSERT INTO categoria (nombre) VALUES ('{0}')", DateTime.Now);
+		mySqlCommandInsert.ExecuteReader();
+		mySqlConnection.Close ();
 	}
 
 
