@@ -22,6 +22,12 @@
         <property name="StockId">gtk-refresh</property>
         <signal name="Activated" handler="OnRefreshActionActivated" />
       </action>
+      <action id="deleteAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-delete</property>
+        <signal name="Activated" handler="OnDeleteActionActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">MainWindow</property>
@@ -38,6 +44,7 @@
             <node name="toolbar" type="Toolbar">
               <node type="Toolitem" action="addAction" />
               <node type="Toolitem" action="refreshAction" />
+              <node type="Toolitem" action="deleteAction" />
             </node>
           </widget>
           <packing>

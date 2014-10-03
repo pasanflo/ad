@@ -16,6 +16,11 @@ public partial class MainWindow: Gtk.Window
 	{
 		Build ();
 
+		deleteAction.Sensitive = false;
+
+		mySqlConnection = new MySqlConnection ("Server=localhost; Database=dbprueba; User ID=root; Password=sistemas");
+		mySqlConnection.Open ();
+
 		//El listStore es el modelo del TreeView. Para meter datos en un treeView, metemos datos
 		//en el listStore y el listStore en el treeView.
 		treeView.AppendColumn ("id", new CellRendererText (), "text", 0);
@@ -25,73 +30,49 @@ public partial class MainWindow: Gtk.Window
 
 		treeView.Model = listStore;
 
-		var mySqlDataReader = fillListStore ();
+		fillListStore ();
+	}
+		
+	private void fillListStore ()
+	{
+		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
+		mySqlCommand.CommandText = "SELECT * FROM categoria";
 
-
+		MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader ();
 
 		while (mySqlDataReader.Read()) {
 			object id = mySqlDataReader["id"].ToString();
 			object nombre = mySqlDataReader["nombre"];
 			listStore.AppendValues (id, nombre);
 		}
-		mySqlDataReader.Close ();
-		mySqlConnection.Close ();
-
-
-
-	}
-
-	MySqlDataReader fillListStore ()
-	{
-		mySqlConnection = new MySqlConnection ("Server=localhost; Database=dbprueba; User ID=root; Password=sistemas");
-		mySqlConnection.Open ();
-		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
-		mySqlCommand.CommandText = "SELECT * FROM categoria";
-		MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader ();
-		return mySqlDataReader;
+		mySqlDataReader.Close();
 	}
 
 	protected void OnAddActionActivated (object sender, EventArgs e)
 	{
-		//listStore.AppendValues ("1", DateTime.Now.ToString());
-		mySqlConnection = new MySqlConnection (
-			"Server=localhost; Database=dbprueba; User ID=root; Password=sistemas");
-		mySqlConnection.Open ();
-		MySqlCommand mySqlCommandInsert = mySqlConnection.CreateCommand ();
-		mySqlCommandInsert.CommandText = String.Format("INSERT INTO categoria (nombre) VALUES ('{0}')", DateTime.Now);
-		mySqlCommandInsert.ExecuteReader();
-		mySqlConnection.Close ();
+
+		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
+		mySqlCommand.CommandText = String.Format("INSERT INTO categoria (nombre) VALUES ('{0}')", DateTime.Now);
+		mySqlCommand.ExecuteNonQuery();
+
 	}
 
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
+		mySqlConnection.Close ();
 		Application.Quit ();
 		a.RetVal = true;
 	}
 	protected void OnRefreshActionActivated (object sender, EventArgs e)
 	{
 		listStore.Clear();
+		fillListStore ();
 
-		listStore = new ListStore (typeof(string), typeof(string));
 
-		treeView.Model = listStore;
-
-//		mySqlConnection = new MySqlConnection (
-//			"Server=localhost; Database=dbprueba; User ID=root; Password=sistemas");
-//		mySqlConnection.Open ();
-
-		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
-		mySqlCommand.CommandText = "SELECT * FROM categoria";
-
-		MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader ();
-
-		while (mySqlDataReader.Read()) {
-			object id = mySqlDataReader["id"].ToString();
-			object nombre = mySqlDataReader["nombre"];
-			listStore.AppendValues (id, nombre);
-		}
-
+	}
+	protected void OnDeleteActionActivated (object sender, EventArgs e)
+	{
 
 	}
 }
