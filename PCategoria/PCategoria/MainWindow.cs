@@ -20,9 +20,7 @@ public partial class MainWindow: Gtk.Window
 
 		mySqlConnection = new MySqlConnection ("Server=localhost; Database=dbprueba; User ID=root; Password=sistemas");
 		mySqlConnection.Open ();
-
-		//El listStore es el modelo del TreeView. Para meter datos en un treeView, metemos datos
-		//en el listStore y el listStore en el treeView.
+	
 		treeView.AppendColumn ("id", new CellRendererText (), "text", 0);
 		treeView.AppendColumn ("nombre", new CellRendererText (), "text", 1);
 
@@ -37,7 +35,6 @@ public partial class MainWindow: Gtk.Window
 	{
 		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
 		mySqlCommand.CommandText = "SELECT * FROM categoria";
-
 		MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader ();
 
 		while (mySqlDataReader.Read()) {
@@ -50,11 +47,9 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnAddActionActivated (object sender, EventArgs e)
 	{
-
 		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
 		mySqlCommand.CommandText = String.Format("INSERT INTO categoria (nombre) VALUES ('{0}')", DateTime.Now);
 		mySqlCommand.ExecuteNonQuery();
-
 	}
 
 
@@ -68,11 +63,12 @@ public partial class MainWindow: Gtk.Window
 	{
 		listStore.Clear();
 		fillListStore ();
-
-
 	}
 	protected void OnDeleteActionActivated (object sender, EventArgs e)
 	{
-
+		TreeIter treeIter;
+		treeView.Selection.GetSelected (out treeIter);
+		//TODO Implementar Delete.
+		//TODO Investigar Delete con "Nueva ventana".
 	}
 }
