@@ -1,8 +1,8 @@
-using System;
-using System.Data;
 using Gtk;
-using MySql.Data;
 using MySql.Data.MySqlClient;
+using System;
+
+using PCategoria;
 
 
 public partial class MainWindow: Gtk.Window
@@ -29,12 +29,18 @@ public partial class MainWindow: Gtk.Window
 		treeView.Model = listStore;
 
 		fillListStore ();
+
+		treeView.Selection.Changed += delegate {
+			deleteAction.Sensitive = treeView.Selection.CountSelectedRows () > 0;
+			editAction.Sensitive = treeView.Selection.CountSelectedRows () > 0;
+		};
 	}
+
 		
 	private void fillListStore ()
 	{
 		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
-		mySqlCommand.CommandText = "SELECT * FROM categoria";
+		mySqlCommand.CommandText = "SELECT id, nombre FROM categoria";
 		MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader ();
 
 		while (mySqlDataReader.Read()) {
@@ -70,5 +76,12 @@ public partial class MainWindow: Gtk.Window
 		treeView.Selection.GetSelected (out treeIter);
 		//TODO Implementar Delete.
 		//TODO Investigar Delete con "Nueva ventana".
+	}
+	protected void OnEditActionActivated (object sender, EventArgs e)
+	{
+		TreeIter treeIter;
+		treeView.Selection.GetSelected (out treeIter);
+		object nombre = listStore.GetValue (treeIter, 0);
+		CategoriaView categoriaView = new CategoriaView (nombre);
 	}
 }

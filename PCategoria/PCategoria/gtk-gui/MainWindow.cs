@@ -6,6 +6,7 @@ public partial class MainWindow
 	private global::Gtk.Action addAction;
 	private global::Gtk.Action refreshAction;
 	private global::Gtk.Action deleteAction;
+	private global::Gtk.Action editAction;
 	private global::Gtk.VBox vbox;
 	private global::Gtk.Toolbar toolbar;
 	private global::Gtk.ScrolledWindow scrolledWindow;
@@ -23,6 +24,8 @@ public partial class MainWindow
 		w1.Add (this.refreshAction, null);
 		this.deleteAction = new global::Gtk.Action ("deleteAction", null, null, "gtk-delete");
 		w1.Add (this.deleteAction, null);
+		this.editAction = new global::Gtk.Action ("editAction", null, null, "gtk-edit");
+		w1.Add (this.editAction, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -33,7 +36,7 @@ public partial class MainWindow
 		this.vbox.Name = "vbox";
 		this.vbox.Spacing = 6;
 		// Container child vbox.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar'><toolitem name='addAction' action='addAction'/><toolitem name='refreshAction' action='refreshAction'/><toolitem name='deleteAction' action='deleteAction'/></toolbar></ui>");
+		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar'><toolitem name='addAction' action='addAction'/><toolitem name='refreshAction' action='refreshAction'/><toolitem name='deleteAction' action='deleteAction'/><toolitem name='editAction' action='editAction'/></toolbar></ui>");
 		this.toolbar = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar")));
 		this.toolbar.Name = "toolbar";
 		this.toolbar.ShowArrow = false;
@@ -66,5 +69,6 @@ public partial class MainWindow
 		this.addAction.Activated += new global::System.EventHandler (this.OnAddActionActivated);
 		this.refreshAction.Activated += new global::System.EventHandler (this.OnRefreshActionActivated);
 		this.deleteAction.Activated += new global::System.EventHandler (this.OnDeleteActionActivated);
+		this.editAction.Activated += new global::System.EventHandler (this.OnEditActionActivated);
 	}
 }
