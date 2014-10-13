@@ -1,17 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PCategoria/CategoriaView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PCategoria/App.cs">
     <Files>
       <File FileName="PCategoria/Program.cs" Line="13" Column="6" />
-      <File FileName="PCategoria/MainWindow.cs" Line="21" Column="112" />
-      <File FileName="PCategoria/CategoriaView.cs" Line="41" Column="15" />
+      <File FileName="PCategoria/MainWindow.cs" Line="1" Column="1" />
+      <File FileName="PCategoria/CategoriaView.cs" Line="1" Column="1" />
       <File FileName="PCategoria/App.cs" Line="21" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="PCategoria" expanded="True">
-            <Node name="CategoriaView.cs" selected="True" />
+            <Node name="App.cs" selected="True" />
           </Node>
         </State>
       </Pad>

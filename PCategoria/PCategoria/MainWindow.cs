@@ -6,9 +6,7 @@ using PCategoria;
 
 
 public partial class MainWindow: Gtk.Window
-{	
-	//Conexion
-
+{
 	private MySqlConnection mySqlConnection;
 	private ListStore listStore;
 
@@ -17,9 +15,10 @@ public partial class MainWindow: Gtk.Window
 		Build ();
 
 		deleteAction.Sensitive = false;
+		editAction.Sensitive = false;
 
-		mySqlConnection = new MySqlConnection ("Server=localhost; Database=dbprueba; User ID=root; Password=sistemas");
-		mySqlConnection.Open ();
+		mySqlConnection = App.Instance.MySqlConnection;
+		mySqlConnection.Open();
 	
 		treeView.AppendColumn ("id", new CellRendererText (), "text", 0);
 		treeView.AppendColumn ("nombre", new CellRendererText (), "text", 1);
@@ -40,11 +39,13 @@ public partial class MainWindow: Gtk.Window
 	private void fillListStore ()
 	{
 		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
-		mySqlCommand.CommandText = "SELECT id, nombre FROM categoria";
+		mySqlCommand.CommandText = "SELECT * FROM categoria";
+
 		MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader ();
 
+
 		while (mySqlDataReader.Read()) {
-			object id = mySqlDataReader["id"].ToString();
+			object id = mySqlDataReader["id"];
 			object nombre = mySqlDataReader["nombre"];
 			listStore.AppendValues (id, nombre);
 		}
@@ -72,16 +73,31 @@ public partial class MainWindow: Gtk.Window
 	}
 	protected void OnDeleteActionActivated (object sender, EventArgs e)
 	{
+		MessageDialog messageDialog = new MessageDialog (
+			this,
+			DialogFlags.Modal,
+			MessageType.Question,
+			ButtonsType.YesNo,
+			"¿Seguro que quieres eliminar el registro?"
+			);
+		messageDialog.Title = Title;
+		ResponseType response = (ResponseType) messageDialog.Run ();
+		messageDialog.Destroy ();
+		if (response != ResponseType.Yes)
+			return;
 		TreeIter treeIter;
 		treeView.Selection.GetSelected (out treeIter);
-		//TODO Implementar Delete.
-		//TODO Investigar Delete con "Nueva ventana".
+		object id = listStore.GetValue (treeIter, 0);
+		string deleteSql = string.Format ("DELETE FROM categoria WHERE id={0}", id);
+		MySqlCommand mySqlCommand = mySqlConnection.CreateCommand ();
+		mySqlCommand.CommandText = deleteSql;
+		mySqlCommand.ExecuteNonQuery ();
 	}
 	protected void OnEditActionActivated (object sender, EventArgs e)
 	{
 		TreeIter treeIter;
 		treeView.Selection.GetSelected (out treeIter);
-		object nombre = listStore.GetValue (treeIter, 0);
-		CategoriaView categoriaView = new CategoriaView (nombre);
+		object id = listStore.GetValue (treeIter, 0);
+		CategoriaView categoriaView = new CategoriaView (id);
 	}
 }
