@@ -10,17 +10,17 @@
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="400 300">
     <action-group name="Default">
-      <action id="addAction">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
-        <property name="StockId">gtk-add</property>
-        <signal name="Activated" handler="OnAddActionActivated" />
-      </action>
       <action id="refreshAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-refresh</property>
         <signal name="Activated" handler="OnRefreshActionActivated" />
+      </action>
+      <action id="addAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-add</property>
+        <signal name="Activated" handler="OnAddActionActivated" />
       </action>
       <action id="deleteAction">
         <property name="Type">Action</property>
@@ -36,20 +36,20 @@
       </action>
     </action-group>
     <property name="MemberName" />
-    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="Title" translatable="yes">Categoria</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.VBox" id="vbox">
+      <widget class="Gtk.VBox" id="vbox1">
         <property name="MemberName" />
         <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.Toolbar" id="toolbar">
+          <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="toolbar" type="Toolbar">
-              <node type="Toolitem" action="addAction" />
+            <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="refreshAction" />
+              <node type="Toolitem" action="addAction" />
               <node type="Toolitem" action="deleteAction" />
               <node type="Toolitem" action="editAction" />
             </node>
@@ -62,14 +62,14 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.ScrolledWindow" id="scrolledWindow">
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
             <property name="MemberName" />
-            <property name="CanFocus">True</property>
             <property name="ShadowType">In</property>
             <child>
               <widget class="Gtk.TreeView" id="treeView">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
               </widget>
             </child>
           </widget>

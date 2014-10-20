@@ -29,7 +29,7 @@
           <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="__gtksharp_151_Stetic_Editor_ActionToolbar" type="Toolbar">
+            <node name="__gtksharp_144_Stetic_Editor_ActionToolbar" type="Toolbar">
               <node type="Toolitem" action="newAction" />
             </node>
           </widget>
@@ -45,7 +45,7 @@
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.Label" id="label">
+              <widget class="Gtk.Label" id="label1">
                 <property name="MemberName" />
                 <property name="LabelProp" translatable="yes">Nombre</property>
               </widget>
@@ -103,12 +103,6 @@
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>
-        </child>
-        <child>
-          <placeholder />
-        </child>
-        <child>
-          <placeholder />
         </child>
       </widget>
     </child>

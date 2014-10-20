@@ -16,12 +16,12 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnButtonClicked (object sender, EventArgs e)
 	{
-		labelSaludo.Text = entry.Text;
+		Console.WriteLine ("has hecho click en Aceptar");
+		labelSaludo.Text = "Hola " + entry.Text;
 	}
 
 	protected void OnNewActionActivated (object sender, EventArgs e)
 	{
-		throw new NotImplementedException ();
+		Console.WriteLine ("has activado la acción newAction");
 	}
-
 }
