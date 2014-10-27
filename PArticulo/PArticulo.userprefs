@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PHolaGtk/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PArticulo/Program.cs">
     <Files>
-      <File FileName="PHolaGtk/MainWindow.cs" Line="26" Column="1" />
+      <File FileName="PArticulo/Program.cs" Line="13" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
