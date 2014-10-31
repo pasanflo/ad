@@ -9,7 +9,8 @@ using PArticulo;
 public partial class MainWindow: Gtk.Window
 {	
 	private IDbConnection dbConnection;
-	private ListStore listStore;
+	private ListStore listStoreArticulo;
+	private ListStore listStoreCategoria;
 
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
@@ -30,8 +31,8 @@ public partial class MainWindow: Gtk.Window
 		dbConnection = App.Instance.DbConnection;
 		treeViewCategoria.AppendColumn ("id", new CellRendererText (), "text", 0);
 		treeViewCategoria.AppendColumn ("nombre", new CellRendererText (), "text", 1);
-		listStore = new ListStore (typeof(ulong), typeof(string));
-		treeViewCategoria.Model = listStore;
+		listStoreCategoria = new ListStore (typeof(ulong), typeof(string));
+		treeViewCategoria.Model = listStoreCategoria;
 		fillListStoreCategoria ();
 	}
 
@@ -42,8 +43,8 @@ public partial class MainWindow: Gtk.Window
 		treeViewArticulo.AppendColumn ("nombre", new CellRendererText (), "text", 1);
 		treeViewArticulo.AppendColumn ("categoria", new CellRendererText (), "text", 2);
 		treeViewArticulo.AppendColumn ("precio", new CellRendererText (), "text", 3);
-		listStore = new ListStore (typeof(ulong), typeof(string), typeof(ulong), typeof(string));
-		treeViewArticulo.Model = listStore;
+		listStoreArticulo = new ListStore (typeof(ulong), typeof(string), typeof(ulong), typeof(string));
+		treeViewArticulo.Model = listStoreArticulo;
 		fillListStoreArticulo ();
 	}
 
@@ -62,7 +63,7 @@ public partial class MainWindow: Gtk.Window
 		while (dataReader.Read()) {
 			object id = dataReader ["id"];
 			object nombre = dataReader ["nombre"];
-			listStore.AppendValues (id, nombre);
+			listStoreCategoria.AppendValues (id, nombre);
 		}
 		dataReader.Close ();
 	}
@@ -77,7 +78,7 @@ public partial class MainWindow: Gtk.Window
 			object nombre = dataReader ["nombre"];
 			object categoria = dataReader ["categoria"];
 			object precio = dataReader ["precio"].ToString();
-			listStore.AppendValues (id, nombre, categoria, precio);
+			listStoreArticulo.AppendValues (id, nombre, categoria, precio);
 		}
 		dataReader.Close ();
 	}
@@ -90,7 +91,10 @@ public partial class MainWindow: Gtk.Window
 	}
 	protected void OnRefreshActionActivated (object sender, EventArgs e)
 	{
-		throw new NotImplementedException ();
+		listStoreArticulo.Clear ();
+		fillListStoreArticulo ();
+		listStoreCategoria.Clear ();
+		fillListStoreCategoria ();
 	}
 
 	protected void OnAddActionActivated (object sender, EventArgs e)
@@ -105,6 +109,37 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnRemoveActionActivated (object sender, EventArgs e)
 	{
-		throw new NotImplementedException ();
+		MessageDialog messageDialog = new MessageDialog (
+			this,
+			DialogFlags.Modal,
+			MessageType.Question,
+			ButtonsType.YesNo,
+			"¿Seguro que quieres borrar?"
+			);
+		messageDialog.Title = Title;
+		ResponseType response = (ResponseType) messageDialog.Run ();
+		messageDialog.Destroy ();
+
+		if (response != ResponseType.Yes)
+			return;
+
+		TreeIter treeIter;
+		string deleteSql = "";
+		if (notebook.Page == 0) { //Si está elegida la pestaña Artículo (0)
+			Console.WriteLine ("Elegida pestaña "+ notebook.Page.ToString());
+			treeViewArticulo.Selection.GetSelected (out treeIter);
+			object id = listStoreArticulo.GetValue (treeIter, 0);
+			deleteSql = string.Format ("DELETE FROM articulo WHERE id={0}", id);
+			Console.WriteLine (deleteSql);
+		} 
+		if (notebook.Page == 1) { //Si está elegida la pestaña Categoria (1)
+			treeViewCategoria.Selection.GetSelected (out treeIter);
+			object id = listStoreCategoria.GetValue (treeIter, 0);
+			deleteSql = string.Format ("DELETE FROM categoria WHERE id={0}", id);
+		}
+		IDbCommand dbCommand = dbConnection.CreateCommand ();
+		dbCommand.CommandText = deleteSql;
+
+		dbCommand.ExecuteNonQuery ();
 	}
 }

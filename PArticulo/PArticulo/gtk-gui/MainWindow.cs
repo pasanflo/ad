@@ -9,7 +9,7 @@ public partial class MainWindow
 	private global::Gtk.Action deleteAction;
 	private global::Gtk.VBox vbox1;
 	private global::Gtk.Toolbar toolbar1;
-	private global::Gtk.Notebook notebook1;
+	private global::Gtk.Notebook notebook;
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 	private global::Gtk.TreeView treeViewArticulo;
 	private global::Gtk.Label labelArticulo;
@@ -51,11 +51,11 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.notebook1 = new global::Gtk.Notebook ();
-		this.notebook1.CanFocus = true;
-		this.notebook1.Name = "notebook1";
-		this.notebook1.CurrentPage = 0;
-		// Container child notebook1.Gtk.Notebook+NotebookChild
+		this.notebook = new global::Gtk.Notebook ();
+		this.notebook.CanFocus = true;
+		this.notebook.Name = "notebook";
+		this.notebook.CurrentPage = 0;
+		// Container child notebook.Gtk.Notebook+NotebookChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
@@ -64,14 +64,14 @@ public partial class MainWindow
 		this.treeViewArticulo.CanFocus = true;
 		this.treeViewArticulo.Name = "treeViewArticulo";
 		this.GtkScrolledWindow.Add (this.treeViewArticulo);
-		this.notebook1.Add (this.GtkScrolledWindow);
+		this.notebook.Add (this.GtkScrolledWindow);
 		// Notebook tab
 		this.labelArticulo = new global::Gtk.Label ();
 		this.labelArticulo.Name = "labelArticulo";
 		this.labelArticulo.LabelProp = global::Mono.Unix.Catalog.GetString ("Articulo");
-		this.notebook1.SetTabLabel (this.GtkScrolledWindow, this.labelArticulo);
+		this.notebook.SetTabLabel (this.GtkScrolledWindow, this.labelArticulo);
 		this.labelArticulo.ShowAll ();
-		// Container child notebook1.Gtk.Notebook+NotebookChild
+		// Container child notebook.Gtk.Notebook+NotebookChild
 		this.scrolledwindow1 = new global::Gtk.ScrolledWindow ();
 		this.scrolledwindow1.CanFocus = true;
 		this.scrolledwindow1.Name = "scrolledwindow1";
@@ -81,17 +81,17 @@ public partial class MainWindow
 		this.treeViewCategoria.CanFocus = true;
 		this.treeViewCategoria.Name = "treeViewCategoria";
 		this.scrolledwindow1.Add (this.treeViewCategoria);
-		this.notebook1.Add (this.scrolledwindow1);
-		global::Gtk.Notebook.NotebookChild w6 = ((global::Gtk.Notebook.NotebookChild)(this.notebook1 [this.scrolledwindow1]));
+		this.notebook.Add (this.scrolledwindow1);
+		global::Gtk.Notebook.NotebookChild w6 = ((global::Gtk.Notebook.NotebookChild)(this.notebook [this.scrolledwindow1]));
 		w6.Position = 1;
 		// Notebook tab
 		this.labelCategoria = new global::Gtk.Label ();
 		this.labelCategoria.Name = "labelCategoria";
 		this.labelCategoria.LabelProp = global::Mono.Unix.Catalog.GetString ("Categoria");
-		this.notebook1.SetTabLabel (this.scrolledwindow1, this.labelCategoria);
+		this.notebook.SetTabLabel (this.scrolledwindow1, this.labelCategoria);
 		this.labelCategoria.ShowAll ();
-		this.vbox1.Add (this.notebook1);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.notebook1]));
+		this.vbox1.Add (this.notebook);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.notebook]));
 		w7.Position = 1;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
