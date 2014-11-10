@@ -24,6 +24,7 @@ public partial class MainWindow: Gtk.Window
 
 
 		treeViewCategoria.Selection.Changed += selectionChanged;
+		treeViewArticulo.Selection.Changed += selectionChanged;
 	}
 
 	void llamarCategoria ()
@@ -50,9 +51,22 @@ public partial class MainWindow: Gtk.Window
 
 	private void selectionChanged (object sender, EventArgs e) {
 		Console.WriteLine ("selectionChanged");
-		bool hasSelected = treeViewCategoria.Selection.CountSelectedRows () > 0;
-		deleteAction.Sensitive = hasSelected;
-		editAction.Sensitive = hasSelected;
+		Console.WriteLine("notebook.TabPos= "+notebook.TabPos);
+		bool hasSelectedCategoria = treeViewCategoria.Selection.CountSelectedRows () > 0;
+		Console.WriteLine ("hasSelectedCategoria= "+hasSelectedCategoria);
+		bool hasSelectedArticulo = treeViewArticulo.Selection.CountSelectedRows () > 0;
+		Console.WriteLine ("hasSelectedArticulo= "+hasSelectedArticulo);
+
+		if (notebook.CurrentPage == 0 & hasSelectedArticulo == false) { //Si está elegida la pestaña Artículo (0)
+			deleteAction.Sensitive = false;
+			editAction.Sensitive = false;
+		}
+		else { deleteAction.Sensitive = true; editAction.Sensitive = true; }
+		if (notebook.CurrentPage == 1 & hasSelectedCategoria == false) { //Si está elegida la pestaña Categoria (1)
+			deleteAction.Sensitive = false;
+			editAction.Sensitive = false;
+		}
+		else { deleteAction.Sensitive = true; editAction.Sensitive = true; }
 	}
 
 	private void fillListStoreCategoria() {
@@ -126,7 +140,6 @@ public partial class MainWindow: Gtk.Window
 		TreeIter treeIter;
 		string deleteSql = "";
 		if (notebook.Page == 0) { //Si está elegida la pestaña Artículo (0)
-			Console.WriteLine ("Elegida pestaña "+ notebook.Page.ToString());
 			treeViewArticulo.Selection.GetSelected (out treeIter);
 			object id = listStoreArticulo.GetValue (treeIter, 0);
 			deleteSql = string.Format ("DELETE FROM articulo WHERE id={0}", id);

@@ -54,7 +54,7 @@ public partial class MainWindow
 		this.notebook = new global::Gtk.Notebook ();
 		this.notebook.CanFocus = true;
 		this.notebook.Name = "notebook";
-		this.notebook.CurrentPage = 0;
+		this.notebook.CurrentPage = 1;
 		// Container child notebook.Gtk.Notebook+NotebookChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
