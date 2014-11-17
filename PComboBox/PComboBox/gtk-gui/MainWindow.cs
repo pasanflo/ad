@@ -6,8 +6,6 @@ public partial class MainWindow
 	private global::Gtk.Action propertiesAction;
 	private global::Gtk.VBox vbox1;
 	private global::Gtk.Toolbar toolbar1;
-	private global::Gtk.HBox hbox1;
-	private global::Gtk.Label label1;
 	private global::Gtk.ComboBox comboBox;
 
 	protected virtual void Build ()
@@ -38,36 +36,13 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.hbox1 = new global::Gtk.HBox ();
-		this.hbox1.Name = "hbox1";
-		this.hbox1.Spacing = 6;
-		// Container child hbox1.Gtk.Box+BoxChild
-		this.label1 = new global::Gtk.Label ();
-		this.label1.Name = "label1";
-		this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Elige");
-		this.hbox1.Add (this.label1);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.label1]));
-		w3.Position = 0;
+		this.comboBox = new global::Gtk.ComboBox ();
+		this.comboBox.Name = "comboBox";
+		this.vbox1.Add (this.comboBox);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.comboBox]));
+		w3.Position = 1;
 		w3.Expand = false;
 		w3.Fill = false;
-		// Container child hbox1.Gtk.Box+BoxChild
-		this.comboBox = global::Gtk.ComboBox.NewText ();
-		this.comboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Uno"));
-		this.comboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Dos"));
-		this.comboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Tres"));
-		this.comboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Cuatro"));
-		this.comboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Cinco"));
-		this.comboBox.Name = "comboBox";
-		this.hbox1.Add (this.comboBox);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.comboBox]));
-		w4.Position = 1;
-		w4.Expand = false;
-		w4.Fill = false;
-		this.vbox1.Add (this.hbox1);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-		w5.Position = 1;
-		w5.Expand = false;
-		w5.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -76,6 +51,5 @@ public partial class MainWindow
 		this.DefaultHeight = 300;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-		this.propertiesAction.Activated += new global::System.EventHandler (this.OnPropertiesActionActivated);
 	}
 }

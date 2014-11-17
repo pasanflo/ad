@@ -1,10 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PSerpisAd/App.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../PComboBox/PComboBox/ComboBoxExtensions.cs">
     <Files>
-      <File FileName="PSerpisAd/App.cs" Line="20" Column="31" />
+      <File FileName="../PComboBox/PComboBox/MainWindow.cs" Line="10" Column="7" />
       <File FileName="PSerpisAd/DbCommandExtensions.cs" Line="1" Column="1" />
+      <File FileName="../PComboBox/PComboBox/ComboBoxHelper.cs" Line="1" Column="11" />
+      <File FileName="../PComboBox/PComboBox/ComboBoxExtensions.cs" Line="9" Column="4" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="PComboBox" expanded="True">
+            <Node name="ComboBoxExtensions.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

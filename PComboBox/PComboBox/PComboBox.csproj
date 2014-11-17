@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{238AADEA-C9D2-4880-97AF-3F7B5A1F436A}</ProjectGuid>
+    <ProjectGuid>{2C6B5687-ECA5-4DB8-8414-943361CB1B2E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>PComboBox</RootNamespace>
     <AssemblyName>PComboBox</AssemblyName>
@@ -57,6 +57,14 @@
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="PSerpisAd">
+      <HintPath>..\..\PSerpisAd\PSerpisAd\bin\Debug\PSerpisAd.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.4.3.0, Culture=neutral, PublicKeyToken=20449f9ba87f7ae2">
+      <Private>False</Private>
+      <Package>mysql-connector-net</Package>
+    </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">

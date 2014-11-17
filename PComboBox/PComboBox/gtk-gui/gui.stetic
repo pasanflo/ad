@@ -14,7 +14,6 @@
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-properties</property>
-        <signal name="Activated" handler="OnPropertiesActionActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -29,7 +28,7 @@
           <widget class="Gtk.Toolbar" id="toolbar1">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
-            <node name="__gtksharp_161_Stetic_Editor_ActionToolbar" type="Toolbar">
+            <node name="__gtksharp_138_Stetic_Editor_ActionToolbar" type="Toolbar">
               <node type="Toolitem" action="propertiesAction" />
             </node>
           </widget>
@@ -41,41 +40,10 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.HBox" id="hbox1">
+          <widget class="Gtk.ComboBox" id="comboBox">
             <property name="MemberName" />
-            <property name="Spacing">6</property>
-            <child>
-              <widget class="Gtk.Label" id="label1">
-                <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">Elige</property>
-              </widget>
-              <packing>
-                <property name="Position">0</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="Gtk.ComboBox" id="comboBox">
-                <property name="MemberName" />
-                <property name="IsTextCombo">True</property>
-                <property name="Items" translatable="yes">Uno
-Dos
-Tres
-Cuatro
-Cinco</property>
-              </widget>
-              <packing>
-                <property name="Position">1</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder />
-            </child>
+            <property name="IsTextCombo">False</property>
+            <property name="Items" translatable="yes" />
           </widget>
           <packing>
             <property name="Position">1</property>

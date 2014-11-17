@@ -175,5 +175,5 @@ FakesAssemblies/
 
 #serpis
 
-#.userprefs
-#~
+*.userprefs
+*~
