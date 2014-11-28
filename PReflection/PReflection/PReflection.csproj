@@ -72,6 +72,8 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="Articulo.cs" />
     <Compile Include="IdAttribute.cs" />
+    <Compile Include="EntityAttribute.cs" />
+    <Compile Include="ValidationAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
