@@ -18,7 +18,7 @@ public class Articulo {
 		Connection connection=DriverManager.getConnection("jdbc:mysql://localhost/dbprueba?user=root&password=sistemas");
 		Statement statement=connection.createStatement();
 		//Sin parametros
-		ResultSet resultset=statement.executeQuery("select * from categoria");
+		ResultSet resultSet=statement.executeQuery("select * from categoria");
 		//Con parametros
 		//PreparedStatement preparedStatement=connection.prepareStatement("select * from categoria where id=?");
 		//preparedStatement.setLong(1,20);
