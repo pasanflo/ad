@@ -12,7 +12,7 @@ public class HibernateCategoria {
 
 	public static void main(String[] args) {
 		EntityManagerFactory entityManagerFactory = 
-				Persistence.createEntityManagerFactory("serpis.ad.jpa.mysql");
+				Persistence.createEntityManagerFactory("serpis.ad.hibernate.mysql");
 		entityManagerFactory.close();
 
 	}
